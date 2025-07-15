@@ -126,7 +126,7 @@ const App = () => {
             </div>
             <label className='label'>
               <span>Izoh</span>
-              <textarea className='textarea' value={NewUser.discription} maxLength={180} name="Izoh" placeholder='Izoh' onChange={(e) => setNewUser({ ...NewUser, discription: e.target.value })} ></textarea>
+              <textarea className='textarea' value={NewUser.discription} maxLength={200} name="Izoh" placeholder='Izoh' onChange={(e) => setNewUser({ ...NewUser, discription: e.target.value })} ></textarea>
             </label>
           </form>
         </div>

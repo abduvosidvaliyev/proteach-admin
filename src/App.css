@@ -15,14 +15,16 @@ body{
 }
 .app-heading{
     font-weight: 600;
+    padding-left: 40px;
 }
 .Admin-panel{
     display: flex;
     gap: 50px;
     margin-top: 50px;
+    padding: 20px 40px;
 }
 .modal{
-    width: 650px;
+    width: 600px;
     height: 800px;
     border-radius: 10px;
     background-color: #fff;
@@ -48,7 +50,7 @@ body{
     font-weight: 600;
 }
 .input{
-    width: 564px;
+    width: 540px;
     border-radius: 10px;
     border: 2px solid rgba(128, 128, 128, 0.582);
     padding: 16px 20px;
@@ -56,18 +58,18 @@ body{
     font-size: 15px;
 }
 .input-number{
-    width: 260px;
+    width: 240px;
 }
 .textarea{
     margin-top: 12px;
-    width: 564px;
+    width: 550px;
     height: 100px;
     padding: 16px 20px;
     font-size: 15px;
     font-weight: 500;
 }
 .addImg{
-    width: 800px;
+    width: 750px;
     height: 750px;
     border-radius: 10px;
     border: 2px solid #000;
@@ -81,7 +83,7 @@ body{
     background-color: #D9D9D9;
     color: #808080;
     border-radius: 10px;
-    font-size: 28px;
+    font-size: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -100,12 +102,12 @@ body{
 }
 
 .uploadVideo{
-    width: 700px;
+    width: 640px;
     height: 260px;
     background-color: #D9D9D9;
     color: #808080;
     border-radius: 10px;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 400;
     display: flex;
     align-items: center;
@@ -116,13 +118,13 @@ body{
 }
 
 .add-user{
-    padding: 11px 22px;
+    padding: 16px 30px;
     background-color: #FFC865;
     border: none;
     outline: none;
     border-radius: 6px;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     position: absolute;
     bottom: 30px;
