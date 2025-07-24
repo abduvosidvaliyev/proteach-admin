@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import { FiDownload } from "react-icons/fi";
 import { uploadImage } from "./uploadImage";
+import { Link } from "react-router";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCmB2bXTAyxXVEvumcTE97RpYKMKu94LBA",
@@ -33,6 +34,7 @@ const App = () => {
     price: "",
     eddedData: "",
     discription: "",
+    Dateofemployment: "",
     image: ""
   })
   const [imageUrl, setimageUrl] = useState("")
@@ -48,7 +50,7 @@ const App = () => {
 
 
   const handleAddUser = async () => {
-    if (!NewUser.name || !NewUser.age || !NewUser.job || !NewUser.workplace || !NewUser.price || !NewUser.eddedData || !NewUser.image) {
+    if (!NewUser.name || !NewUser.age || !NewUser.job || !NewUser.workplace || !NewUser.price || !NewUser.eddedData || !NewUser.image || !NewUser.Dateofemployment) {
       alert("Iltimos, barcha maydonlarni to'ldiring.");
       return;
     }
@@ -69,6 +71,7 @@ const App = () => {
             price: "",
             eddedData: "",
             discription: "",
+            Dateofemployment: "",
             image: ""
           });
           setimageUrl("");
@@ -93,10 +96,15 @@ const App = () => {
 
   return (
     <div className='App container'>
-      <h1 className="app-heading">Yangi o’quvchi qo’shish</h1>
+      <div className="title mt-6">
+        <h1 className="app-heading text-[30px]">Yangi o’quvchi qo’shish</h1>
+        <Link to="/panel" className="button">
+          Ma'lumotlarni ko'rish
+        </Link>
+      </div>
       <div className='Admin-panel '>
         <div className='modal'>
-          <h1 className='modal-title'>Ma'lumotlar</h1>
+          <h1 className='modal-title text-[26px] mb-2'>Ma'lumotlar</h1>
           <form>
             <label className='label'>
               <span>Ismi</span>
@@ -110,16 +118,20 @@ const App = () => {
               <span>Yunalish</span>
               <input className='input' value={NewUser.job} type="text" name='job' placeholder='Yunalish' onChange={(e) => setNewUser({ ...NewUser, job: e.target.value })} required />
             </label>
-            <labe className='label'>
+            <label className='label'>
               <span>Ish joyi</span>
-              <input className='input' value={NewUser.workplace} type="text" name="work" placeholder='Ish Joyi' onChange={(e) => setNewUser({ ...NewUser, workplace: e.target.value })} required />
-            </labe>
+              <input className='input' value={NewUser.workplace} type="text" name="work" placeholder='Ish joyi' onChange={(e) => setNewUser({ ...NewUser, workplace: e.target.value })} required />
+            </label>
+            <label className='label'>
+              <span>Ishga joylashgan sana</span>
+              <input className='input' value={NewUser.Dateofemployment} type="text" name="work" placeholder='Ishga joylashgan sana' onChange={(e) => setNewUser({ ...NewUser, Dateofemployment: e.target.value })} required />
+            </label>
             <div className='modal-inner'>
-              <label className='label'>
+              <label className='label w-'>
                 <span>Daromadi</span>
                 <input className='input input-number' value={NewUser.price} type="text" name="price" placeholder='Daromadi' onChange={(e) => setNewUser({ ...NewUser, price: e.target.value })} required />
               </label>
-              <label className='label'>
+              <label className='label '>
                 <span>Ishga joylashdi</span>
                 <input className='input input-number' value={NewUser.eddedData} type="text" name="addedData" placeholder='Ishga joylashdi' onChange={(e) => setNewUser({ ...NewUser, eddedData: e.target.value })} required />
               </label>
@@ -130,9 +142,9 @@ const App = () => {
             </label>
           </form>
         </div>
-        <div className='addImg'>
+        <div className='addImg h-[800px]'>
           <div>
-            <h2>Rasm</h2>
+            <h2 className="text-[26px] font-semibold">Rasm</h2>
             {
               imageUrl === "" ? (
                 <>
@@ -146,7 +158,7 @@ const App = () => {
                     id="file"
                     type="file"
                     className="hidden"
-                    onChange={(e) => { setNewUser({...NewUser, image: e.target.files[0]}), handleUrl(e) }}
+                    onChange={(e) => { setNewUser({ ...NewUser, image: e.target.files[0] }), handleUrl(e) }}
                   />
                 </>
               ) : (
@@ -155,7 +167,7 @@ const App = () => {
             }
           </div>
           <div>
-            <h2>Video</h2>
+            <h2 className="text-[26px] font-semibold">Video</h2>
             <label htmlFor="file" >
               <div className="uploadVideo">
                 <FiDownload size={28} />
@@ -177,89 +189,3 @@ const App = () => {
 }
 
 export default App
-
-
-
-
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-
-// function App() {
-//   const [file, setFile] = useState(null);
-//   const [files, setFiles] = useState([]);
-
-//   // Fayllar ro‘yxatini serverdan olish
-//   const fetchFiles = async () => {
-//     try {
-//       const res = await axios.get("http://localhost:5000/files");
-//       setFiles(res.data);
-//     } catch (err) {
-//       console.error("Fayllarni olishda xatolik:", err);
-//     }
-//   };
-
-//   // Fayl yuklash
-//   const handleUpload = async (e) => {
-//     e.preventDefault();
-//     if (!file) return;
-
-//     const formData = new FormData();
-//     formData.append("file", file);
-
-//     try {
-//       await axios.post("http://localhost:5000/upload", formData);
-//       setFile(null); // inputni tozalash
-//       fetchFiles(); // yangi ro‘yxatni yuklash
-//     } catch (err) {
-//       console.error("Yuklashda xatolik:", err);
-//     }
-//   };
-
-//   // Fayl o‘chirish
-//   const handleDelete = async (filename) => {
-//     try {
-//       await axios.delete(`http://localhost:5000/delete/${filename}`);
-//       fetchFiles(); // ro‘yxatni yangilash
-//     } catch (err) {
-//       console.error("O‘chirishda xatolik:", err);
-//     }
-//   };
-
-//   // Komponent yuklanganda fayllarni olish
-//   useEffect(() => {
-//     fetchFiles();
-//   }, []);
-
-//   return (
-//     <div className="container" style={{ maxWidth: "600px", margin: "50px auto" }}>
-//       <h2>📤 Fayl yuklash (Storj)</h2>
-//       <form onSubmit={handleUpload}>
-//         <input
-//           type="file"
-//           onChange={(e) => setFile(e.target.files[0])}
-//           required
-//         />
-//         <button type="submit">Yuklash</button>
-//       </form>
-
-//       <hr />
-
-//       <h3>📁 Yuklangan fayllar:</h3>
-//       <ul>
-//         {files.map((filename, index) => (
-//           <li key={index} style={{ marginBottom: "5px" }}>
-//             {filename}
-//             <button
-//               onClick={() => handleDelete(filename)}
-//               style={{ marginLeft: "10px", color: "red" }}
-//             >
-//               O‘chirish
-//             </button>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }
-
-// export default App;

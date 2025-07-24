@@ -1,0 +1,16 @@
+.circle{
+    border: 1px solid #E0E0E0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 500px) {
+    .navbar{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        }
+}

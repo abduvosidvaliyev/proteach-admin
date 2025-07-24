@@ -1,0 +1,113 @@
+@import url(https://fonts.googleapis.com/css2?family=Krona+One&display=swap);
+.hero{
+    height: 614px;
+    background: linear-gradient(#e2d2b2c8,#f7f7f7), url(/public/hero-bg.png) no-repeat center center / cover;
+    padding-top: 80px;
+    border-top: 3px solid #FFC865;
+    border-left: 3px solid #FFC865;
+    border-right: 3px solid #FFC865;
+    border-radius: 10px;
+}
+
+.hero-title{
+    width: 460px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+    color: #000;
+    border: 1px solid #adaaaa;
+    border-radius: 20px;
+    margin: auto;
+}
+
+.hero-text{
+    font-size: 52px;
+    font-weight: 500;
+    line-height: 50px;
+    padding-top: 40px;
+}
+
+.hero-info{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+    padding-top: 22px;
+    color: #191919;
+    margin-bottom: 170px;
+}
+
+.button-hero{
+    width: 234px;
+    height: 52px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: -5%;
+    border-radius: 24px;
+    background-color: #FFC865;
+    font-family: 'Krona One', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.hero-icon{
+    width: 26px;
+    height: 26px;
+    border-radius: 22px;
+    background-color: #fff;
+    padding: 3px;
+}
+
+@media screen and (max-width: 500px) {
+
+    .hero-title{
+        width: 350px;
+        height: 36px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 32px;
+        color: #000;
+        border: 1px solid #adaaaa;
+        border-radius: 20px;
+        margin: auto;
+    }
+    .hero-text{
+        text-align: center;
+        font-size: 30px;
+    }
+    .hero-info{
+        font-size: 18px;
+        margin-bottom: 120px;
+    }
+
+    .button-hero{
+        width: 200px;
+        height: 40px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 32px;
+        letter-spacing: -5%;
+        border-radius: 24px;
+        background-color: #FFC865;
+        font-family: 'Krona One', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: auto;
+        cursor: pointer;
+    }
+
+    .hero-icon{
+        width: 20px;
+        height: 20px;
+        border-radius: 22px;
+        background-color: #fff;
+        padding: 2px;
+    }
+}

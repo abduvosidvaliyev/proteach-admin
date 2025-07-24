@@ -44,29 +44,31 @@ body{
     display: flex;
     flex-direction: column;
     align-items: self-start;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     color: #808080;
     font-size: 16px;
     font-weight: 600;
 }
 .input{
-    width: 540px;
+    width: 500px;
     border-radius: 10px;
     border: 2px solid rgba(128, 128, 128, 0.582);
-    padding: 16px 20px;
-    margin-top: 12px;
-    font-size: 15px;
+    padding: 12px 10px;
+    margin-top: 10px;
+    font-size: 14px;
 }
 .input-number{
-    width: 240px;
+    width: 244px;
 }
 .textarea{
     margin-top: 12px;
-    width: 550px;
-    height: 100px;
+    width: 500px;
+    height: 80px;
     padding: 16px 20px;
     font-size: 15px;
     font-weight: 500;
+    border-radius: 10px;
+    border: 2px solid rgba(128, 128, 128, 0.582);
 }
 .addImg{
     width: 750px;
@@ -118,7 +120,7 @@ body{
 }
 
 .add-user{
-    padding: 16px 30px;
+    padding: 14px 24px;
     background-color: #FFC865;
     border: none;
     outline: none;
@@ -128,7 +130,7 @@ body{
     cursor: pointer;
     position: absolute;
     bottom: 30px;
-    right: 30px;
+    right: 60px;
 }
 
 .hidden{
@@ -196,7 +198,7 @@ body{
 
     .addImg{
         width: 400px;
-        height: 750px;
+        height: 780px;
         border-radius: 10px;
         border: 2px solid #000;
         padding: 40px 40px;
@@ -220,7 +222,7 @@ body{
     
     .uploadVideo{
         width: 340px;
-        height: 260px;
+        height: 240px;
         background-color: #D9D9D9;
         color: #808080;
         border-radius: 10px;
@@ -246,4 +248,31 @@ body{
         bottom: 30px;
         right: 220px;
     }
+}
+
+
+.title{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title .button{
+    height: auto;
+    background-color: transparent;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 24px;
+    margin-right: 80px;
+    text-decoration: none;
+    color: #000;
+}
+
+.image:hover ~ .chenge{
+    bottom: 0;
+}
+
+.chenge:hover{
+    bottom: 0;
 }
