@@ -115,15 +115,15 @@ const App = () => {
               <input className='input' value={NewUser.age} type="text" name="age" placeholder='Yoshi' onChange={(e) => setNewUser({ ...NewUser, age: e.target.value })} required />
             </label>
             <label className='label'>
-              <span>Yunalish</span>
-              <input className='input' value={NewUser.job} type="text" name='job' placeholder='Yunalish' onChange={(e) => setNewUser({ ...NewUser, job: e.target.value })} required />
+              <span>Yo'nalish</span>
+              <input className='input' value={NewUser.job} type="text" name='job' placeholder="Yo'nalish" onChange={(e) => setNewUser({ ...NewUser, job: e.target.value })} required />
             </label>
             <label className='label'>
               <span>Ish joyi</span>
               <input className='input' value={NewUser.workplace} type="text" name="work" placeholder='Ish joyi' onChange={(e) => setNewUser({ ...NewUser, workplace: e.target.value })} required />
             </label>
             <label className='label'>
-              <span>Ishga joylashgan sana</span>
+              <span>Ma'lumot olingan sana</span>
               <input className='input' value={NewUser.Dateofemployment} type="text" name="work" placeholder='Ishga joylashgan sana' onChange={(e) => setNewUser({ ...NewUser, Dateofemployment: e.target.value })} required />
             </label>
             <div className='modal-inner'>
@@ -132,7 +132,7 @@ const App = () => {
                 <input className='input input-number' value={NewUser.price} type="text" name="price" placeholder='Daromadi' onChange={(e) => setNewUser({ ...NewUser, price: e.target.value })} required />
               </label>
               <label className='label '>
-                <span>Ishga joylashdi</span>
+                <span>Ishga joylashgan sana</span>
                 <input className='input input-number' value={NewUser.eddedData} type="text" name="addedData" placeholder='Ishga joylashdi' onChange={(e) => setNewUser({ ...NewUser, eddedData: e.target.value })} required />
               </label>
             </div>
