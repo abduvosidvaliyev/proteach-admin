@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getDatabase, ref, onValue, set, get } from "firebase/database";
+import { getDatabase, ref, onValue, set, get, remove } from "firebase/database";
 import { useState, useEffect, useRef } from "react";
 import Navbar from "./components/navbar/navbar";
 import Hero from "./components/hero/Hero";
@@ -45,12 +45,14 @@ const App = () => {
         price: "",
         eddedData: "",
         discription: "",
-        Dateofemployment: ""
-
+        Dateofemployment: "",
+        image: "",
+        originalName : ""
     })
     const [FIle, setFIle] = useState(null)
     const [Link, setLink] = useState("")
     const [OpenSideBar, setOpenSideBar] = useState(false)
+    const [UserName, setUserName] = useState("")
 
 
     useEffect(() => {
@@ -62,16 +64,19 @@ const App = () => {
         });
     }, []);
 
-    const handleOpenSidebar = (id) => {
-        const user = GetArray.find(item => item.id === id)
+    const handleOpenSidebar = (name) => {
+        const user = GetArray.find(item => item.name === name)
         if (user) {
             setUserIndex(user);
+            setUserName(user?.name);
         }
 
         setOpenSideBar(true);
     }
 
     const handleSave = async () => {
+        let newImageUrl = "";
+
         if (
             !UserIndex.name ||
             !UserIndex.job ||
@@ -86,34 +91,41 @@ const App = () => {
         }
 
         try {
-            const userRef = ref(database, `Users/${UserIndex.name}`);
-
-            // Eski ma'lumotni olish
-            const snapshot = await get(userRef);
-            const oldData = snapshot.val();
+            // eski user'ni olish
+            const oldUserRef = ref(database, `Users/${UserName}`);
+            const oldSnapshot = await get(oldUserRef);
+            const oldData = oldSnapshot.val();
             const oldImageUrl = oldData?.image;
+            const originalName = oldData?.name;
 
-            // Eski rasm Supabase'dan bo'lsa — o'chirish
+            const userRef = ref(database, `Users/${originalName}`);
+
+            // eski rasmni o‘chirish
             if (oldImageUrl?.includes("supabase.co")) {
                 const filePath = oldImageUrl.split('/').pop().split('?')[0];
                 await supabase.storage.from('project007').remove([filePath]);
             }
 
-            // Yangi rasmni yuklash
-            const newImageUrl = await uploadImage(FIle);
+            // yangi rasmni yuklash
+            if (FIle) {
+                newImageUrl = await uploadImage(FIle);
+            }
 
-            // Yangi object yaratamiz
             const updatedUser = {
                 ...UserIndex,
-                image: newImageUrl,
+                image: newImageUrl || oldImageUrl || ""
             };
 
-            // Firebase'ga yozamiz
-            await set(userRef, updatedUser);
+            // agar name o‘zgargan bo‘lsa — eski foydalanuvchini o‘chirish
+            if (originalName !== UserIndex.name) {
+                await remove(userRef);
+            }
 
-            // React holatini yangilaymiz (agar kerak bo‘lsa)
+            // yangi userni saqlash
+            const newUserRef = ref(database, `Users/${UserIndex.name}`);
+            await set(newUserRef, updatedUser);
+
             setUserIndex(updatedUser);
-
             setOpenSideBar(false);
             alert("Ma'lumot yangilandi!");
 
@@ -154,7 +166,7 @@ const App = () => {
                                     type="text"
                                     placeholder="Ism"
                                     value={UserIndex.name}
-                                    onChange={(e) => setUserIndex({ ...UserIndex, name: e.target.value })}
+                                    onChange={(e) => setUserIndex({ ...UserIndex, name: e.target.value, originalName: e.target.value })}
                                     className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
                                 />
                             </div>
@@ -251,7 +263,7 @@ const App = () => {
                             </div>
                             <div className="flex flex-col">
                                 {(
-                                    <div className="relative overflow-hidden bg-green-700 h-[300px] rounded-xl">
+                                    <div className="relative overflow-hidden h-[300px] rounded-xl">
                                         <img src={Link === "" ? UserIndex.image : Link} className="image w-full h-full" alt="" />
                                         <label className="chenge transition-all cursor-pointer flex justify-center items-center absolute w-full bg-black/50 h-3/6 rounded-lg -bottom-full" htmlFor="file">
                                             <FaCamera className="text-white" size={25} />
@@ -296,7 +308,7 @@ const App = () => {
                                             <div className="flex flex-col text-center justify-between w-full max-w-[280px] relative">
                                                 <GoPencil
                                                     className="absolute -right-1 top-1 text-yellow-600 cursor-pointer"
-                                                    onClick={() => handleOpenSidebar(item.id)}
+                                                    onClick={() => handleOpenSidebar(item.name)}
                                                     size={17}
                                                 />
                                                 <div className="flex flex-col gap-1 sm:h-[360px] h-auto mt-3 sm:mt-0 px-2">
@@ -314,26 +326,26 @@ const App = () => {
                                                     <div className="mt-4 space-y-2 text-left sm:text-left sm:px-0 px-4">
                                                         <div className="flex items-center gap-2">
                                                             <FaLocationDot className="text-[20px]" />
-                                                            <h1 className="text-[16px] font-normal">
-                                                                Ish Joyi: <span className="font-bold">{item.workplace}</span>
+                                                            <h1 className="text-[16px] font-bold">
+                                                                Ish Joyi: <span className="font-normal">{item.workplace}</span>
                                                             </h1>
                                                         </div>
                                                         <div className="flex items-center gap-2">
                                                             <MdMonetizationOn className="text-[20px]" />
-                                                            <h1>
-                                                                Daromadi: <span className="font-bold">{item.price}</span>
+                                                            <h1 className="font-bold">
+                                                                Daromadi: <span className="font-normal">{item.price}</span>
                                                             </h1>
                                                         </div>
                                                         <div className="flex items-center gap-2">
                                                             <TbTargetArrow className="text-[18px]" />
-                                                            <h1>
-                                                                Ishga kirdi: <span className="font-bold">{item.eddedData}</span>
+                                                            <h1 className="font-bold">
+                                                                Ishga kirdi: <span className="font-normal">{item.eddedData}</span>
                                                             </h1>
                                                         </div>
                                                         <div className="flex items-center gap-2">
                                                             <HiMiniCalendarDateRange className="text-[20px]" />
-                                                            <h1 className="text-[16px] font-normal">
-                                                                Ishga joylashgan sana: <span className="font-bold">{item.Dateofemployment}</span>
+                                                            <h1 className="text-[16px] font-bold">
+                                                                Malumot olingan sana: <span className="font-normal">{item.Dateofemployment}</span>
                                                             </h1>
                                                         </div>
                                                     </div>
