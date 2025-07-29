@@ -325,27 +325,27 @@ const App = () => {
 
                                                     <div className="mt-4 space-y-2 text-left sm:text-left sm:px-0 px-4">
                                                         <div className="flex items-center gap-2">
-                                                            <FaLocationDot className="text-[20px]" />
+                                                            <FaLocationDot className="text-[20px] flex self-start" />
                                                             <h1 className="text-[16px] font-bold">
                                                                 Ish Joyi: <span className="font-normal">{item.workplace}</span>
                                                             </h1>
                                                         </div>
                                                         <div className="flex items-center gap-2">
-                                                            <MdMonetizationOn className="text-[20px]" />
+                                                            <MdMonetizationOn className="text-[20px] flex self-start" />
                                                             <h1 className="font-bold">
                                                                 Daromadi: <span className="font-normal">{item.price}</span>
                                                             </h1>
                                                         </div>
                                                         <div className="flex items-center gap-2">
-                                                            <TbTargetArrow className="text-[18px]" />
+                                                            <TbTargetArrow className="text-[18px] flex self-start" />
                                                             <h1 className="font-bold">
                                                                 Ishga kirdi: <span className="font-normal">{item.eddedData}</span>
                                                             </h1>
                                                         </div>
                                                         <div className="flex items-center gap-2">
-                                                            <HiMiniCalendarDateRange className="text-[20px]" />
+                                                            <HiMiniCalendarDateRange className="text-[22px] flex self-start" />
                                                             <h1 className="text-[16px] font-bold">
-                                                                Malumot olingan sana: <span className="font-normal">{item.Dateofemployment}</span>
+                                                                Ma'lumot olingan sana: <span className="font-normal">{item.Dateofemployment}</span>
                                                             </h1>
                                                         </div>
                                                     </div>

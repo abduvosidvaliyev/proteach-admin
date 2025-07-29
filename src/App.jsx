@@ -37,7 +37,7 @@ const App = () => {
     Dateofemployment: "",
     image: ""
   })
-  const [imageUrl, setimageUrl] = useState("")
+  const [imageUrl, setimageUrl] = useState("")  
 
   useEffect(() => {
     const userRef = ref(database, 'Users');
