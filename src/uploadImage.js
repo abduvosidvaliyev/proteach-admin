@@ -14,7 +14,7 @@ export async function uploadImage(file) {
     // Doim ishlaydigan link olish – 2 yil amal qiladi
     const { data: urlData, error: urlError } = await supabase.storage
         .from('project007')
-        .createSignedUrl(filePath, 60 * 60 * 24 * 365 * 10); // 2 yil
+        .createSignedUrl(filePath, 60 * 60 * 24 * 365 * 10); // 10 yil
 
     if (urlError) throw urlError;
 

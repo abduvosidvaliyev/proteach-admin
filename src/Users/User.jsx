@@ -3,18 +3,17 @@ import { getAnalytics } from "firebase/analytics";
 import { getDatabase, ref, onValue, set, get, remove } from "firebase/database";
 import { useState, useEffect, useRef } from "react";
 import Navbar from "./components/navbar/navbar";
-import Hero from "./components/hero/Hero";
-import { MdMonetizationOn } from "react-icons/md";
-import { FaArrowUp } from "react-icons/fa6";
-import { TbTargetArrow } from "react-icons/tb";
-import { FaLocationDot } from "react-icons/fa6";
-import { HiMiniCalendarDateRange } from "react-icons/hi2";
+import "./components/hero/Hero.css";
 import "./User.css"
-import { FaCamera, FaPen } from "react-icons/fa";
-import { GoPencil } from "react-icons/go";
-import { FiDownload } from "react-icons/fi";
+import { FaCalendarAlt, FaCamera, FaChevronRight, FaInstagram, FaPen, FaPhone } from "react-icons/fa";
 import { uploadImage } from "../uploadImage";
 import { supabase } from "../supabaseClient";
+import ParticlesBackground from "../ParticlesBackground"
+import { IoLocation } from "react-icons/io5";
+import { BsCreditCardFill } from "react-icons/bs";
+import { PiArrowDownRightBold } from "react-icons/pi";
+import { MdLocationPin } from "react-icons/md";
+import { HiOutlineMail } from "react-icons/hi";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCmB2bXTAyxXVEvumcTE97RpYKMKu94LBA",
@@ -47,7 +46,7 @@ const App = () => {
         discription: "",
         Dateofemployment: "",
         image: "",
-        originalName : ""
+        originalName: ""
     })
     const [FIle, setFIle] = useState(null)
     const [Link, setLink] = useState("")
@@ -147,224 +146,308 @@ const App = () => {
     }
 
     return (
-        <>
+        <html className="scroll-smooth">
 
-            {
-                OpenSideBar && (
-                    <div className="w-full h-screen absolute">
-                        <div className="w-full h-full fixed top-0 left-0 bg-black/50 backdrop-blur-[2px] z-20" onClick={() => setOpenSideBar(false)}></div>
-                        <div className="w-[400px] bg-white h-full fixed right-0 top-0 z-30 flex flex-col py-6 px-5 pb-6 gap-5 overflow-auto">
-                            <h3 className="text-lg font-semibold ">
-                                Ma'lumotlarni tahrirlash
-                            </h3>
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="name">
-                                    Ismi:
-                                </label>
-                                <input
-                                    id="name"
-                                    type="text"
-                                    placeholder="Ism"
-                                    value={UserIndex.name}
-                                    onChange={(e) => setUserIndex({ ...UserIndex, name: e.target.value, originalName: e.target.value })}
-                                    className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
-                                />
+            <>
+
+                {
+                    OpenSideBar && (
+                        <div className="w-full h-screen absolute">
+                            <div className="w-full h-full fixed top-0 left-0 bg-black/50 backdrop-blur-[2px] z-20" onClick={() => setOpenSideBar(false)}></div>
+                            <div className="w-[400px] bg-white h-full fixed right-0 top-0 z-30 flex flex-col py-6 px-5 pb-6 gap-5 overflow-auto">
+                                <h3 className="text-lg font-semibold ">
+                                    Ma'lumotlarni tahrirlash
+                                </h3>
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="name">
+                                        Ismi:
+                                    </label>
+                                    <input
+                                        id="name"
+                                        type="text"
+                                        placeholder="Ism"
+                                        value={UserIndex.name}
+                                        onChange={(e) => setUserIndex({ ...UserIndex, name: e.target.value, originalName: e.target.value })}
+                                        className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="age">
+                                        Yoshi:
+                                    </label>
+                                    <input
+                                        id="age"
+                                        type="text"
+                                        placeholder="Yosh"
+                                        value={UserIndex.age}
+                                        onChange={(e) => setUserIndex({ ...UserIndex, age: e.target.value })}
+                                        className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="job">
+                                        Kasbi:
+                                    </label>
+                                    <input
+                                        id="job"
+                                        type="text"
+                                        placeholder="Kasb"
+                                        value={UserIndex.job}
+                                        className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
+                                        onChange={(e) => setUserIndex({ ...UserIndex, job: e.target.value })}
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="workPlace">
+                                        Ish joyi:
+                                    </label>
+                                    <input
+                                        id="workPlace"
+                                        type="text"
+                                        placeholder="Ish joyi"
+                                        value={UserIndex.workplace}
+                                        className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
+                                        onChange={(e) => setUserIndex({ ...UserIndex, workplace: e.target.value })}
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="amount">
+                                        Daromadi:
+                                    </label>
+                                    <input
+                                        id="amount"
+                                        type="text"
+                                        placeholder="Daromadi"
+                                        value={UserIndex.price}
+                                        onChange={(e) => setUserIndex({ ...UserIndex, price: e.target.value })}
+                                        className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="addWork">
+                                        Ishga kirdi:
+                                    </label>
+                                    <input
+                                        id="addWork"
+                                        type="text"
+                                        placeholder="Ishga kirdi"
+                                        value={UserIndex.eddedData}
+                                        onChange={(e) => setUserIndex({ ...UserIndex, eddedData: e.target.value })}
+                                        className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="qwerty">
+                                        Ishga joylashgan sana:
+                                    </label>
+                                    <input
+                                        id="qwerty"
+                                        type="text"
+                                        placeholder="Ishga joylashgan sana"
+                                        value={UserIndex.Dateofemployment}
+                                        onChange={(e) => setUserIndex({ ...UserIndex, Dateofemployment: e.target.value })}
+                                        className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="decription">
+                                        Ma'lumot:
+                                    </label>
+                                    <textarea
+                                        id="decription"
+                                        type="text"
+                                        placeholder="Ma'lumot"
+                                        value={UserIndex.discription}
+                                        onChange={(e) => setUserIndex({ ...UserIndex, discription: e.target.value })}
+                                        className="w-full h-[150px] border-2 border-gray-300 rounded-md p-2 text-sm resize-none"
+                                    />
+                                </div>
+                                <div className="flex flex-col">
+                                    {(
+                                        <div className="relative overflow-hidden h-[300px] rounded-xl">
+                                            <img src={Link === "" ? UserIndex.image : Link} className="image w-full h-full" alt="" />
+                                            <label className="chenge transition-all cursor-pointer flex justify-center items-center absolute w-full bg-black/50 h-3/6 rounded-lg -bottom-full" htmlFor="file">
+                                                <FaCamera className="text-white" size={25} />
+                                            </label>
+                                            <input
+                                                id="file"
+                                                type="file"
+                                                className="hidden"
+                                                onChange={(e) => handleChengeImg(e)}
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+                                <button onClick={handleSave} className="self-end bg-yellow-500 px-4 py-2 rounded-md text-white">
+                                    Saqlash
+                                </button>
                             </div>
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="age">
-                                    Yoshi:
-                                </label>
-                                <input
-                                    id="age"
-                                    type="text"
-                                    placeholder="Yosh"
-                                    value={UserIndex.age}
-                                    onChange={(e) => setUserIndex({ ...UserIndex, age: e.target.value })}
-                                    className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="job">
-                                    Kasbi:
-                                </label>
-                                <input
-                                    id="job"
-                                    type="text"
-                                    placeholder="Kasb"
-                                    value={UserIndex.job}
-                                    className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
-                                    onChange={(e) => setUserIndex({ ...UserIndex, job: e.target.value })}
-                                />
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="workPlace">
-                                    Ish joyi:
-                                </label>
-                                <input
-                                    id="workPlace"
-                                    type="text"
-                                    placeholder="Ish joyi"
-                                    value={UserIndex.workplace}
-                                    className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
-                                    onChange={(e) => setUserIndex({ ...UserIndex, workplace: e.target.value })}
-                                />
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="amount">
-                                    Daromadi:
-                                </label>
-                                <input
-                                    id="amount"
-                                    type="text"
-                                    placeholder="Daromadi"
-                                    value={UserIndex.price}
-                                    onChange={(e) => setUserIndex({ ...UserIndex, price: e.target.value })}
-                                    className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="addWork">
-                                    Ishga kirdi:
-                                </label>
-                                <input
-                                    id="addWork"
-                                    type="text"
-                                    placeholder="Ishga kirdi"
-                                    value={UserIndex.eddedData}
-                                    onChange={(e) => setUserIndex({ ...UserIndex, eddedData: e.target.value })}
-                                    className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="qwerty">
-                                    Ishga joylashgan sana:
-                                </label>
-                                <input
-                                    id="qwerty"
-                                    type="text"
-                                    placeholder="Ishga joylashgan sana"
-                                    value={UserIndex.Dateofemployment}
-                                    onChange={(e) => setUserIndex({ ...UserIndex, Dateofemployment: e.target.value })}
-                                    className="w-full border-2 border-gray-300 rounded-md p-2 text-sm"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <label htmlFor="decription">
-                                    Ma'lumot:
-                                </label>
-                                <textarea
-                                    id="decription"
-                                    type="text"
-                                    placeholder="Ma'lumot"
-                                    value={UserIndex.discription}
-                                    onChange={(e) => setUserIndex({ ...UserIndex, discription: e.target.value })}
-                                    className="w-full h-[150px] border-2 border-gray-300 rounded-md p-2 text-sm resize-none"
-                                />
-                            </div>
-                            <div className="flex flex-col">
-                                {(
-                                    <div className="relative overflow-hidden h-[300px] rounded-xl">
-                                        <img src={Link === "" ? UserIndex.image : Link} className="image w-full h-full" alt="" />
-                                        <label className="chenge transition-all cursor-pointer flex justify-center items-center absolute w-full bg-black/50 h-3/6 rounded-lg -bottom-full" htmlFor="file">
-                                            <FaCamera className="text-white" size={25} />
-                                        </label>
-                                        <input
-                                            id="file"
-                                            type="file"
-                                            className="hidden"
-                                            onChange={(e) => handleChengeImg(e)}
-                                        />
-                                    </div>
-                                )}
-                            </div>
-                            <button onClick={handleSave} className="self-end bg-yellow-500 px-4 py-2 rounded-md text-white">
-                                Saqlash
-                            </button>
                         </div>
+                    )
+                }
+
+                <div className="px-[60px] pt-5">
+                    <Navbar />
+                    <div className='hero flex items-center flex-col mt-5'>
+                        <h4 className='text-lg border border-solid px-8 py-3 rounded-full border-gray-500'>Zamonaviy kasblarni professionallardan o’rganing</h4>
+                        <h1 className='hero-text montserrat'>Nazariy emas, amaliy natija- <br />O‘quvchilarimiz allaqachon <br /> <span className='text-[#FBA406] font-semibold text-shadow'><i>daromadga</i> </span> chiqqan!</h1>
+                        <p className='hero-info poppins'>O‘quvchilarimiz oyiga o’rtacha 300$+ daromad qilishmoqda!</p>
+                        <a href="#natija">
+                            <button className='button-hero'>Natijalarni ko‘rish <PiArrowDownRightBold className='hero-icon' /></button>
+                        </a>
                     </div>
-                )
-            }
 
-            <div>
-                <Navbar />
-                <Hero scrollToRef={cardSectionRef} />
-                <h1 id="natija" className="text-center pt-20 text-3xl font-semibold text-[#000000]">-BITIRUVCHILAR-</h1>
-
-                <div className="flex flex-col w-full items-center px-4 py-5 pt-10">
-                    {
-                        GetArray.length > 0 ? (
-                            GetArray.sort((a, b) => a.id - b.id)
-                                .map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className={`w-full sm:w-[620px] ${index % 2 === 0 ? "self-start ml-[40px]" : "self-end"} mb-10 `}
-                                    >
-                                        <div ref={cardSectionRef} className="flex flex-col sm:flex-row w-full max-w-[550px] h-[520px] sm:w-[620px] border border-[#E8E8E8] rounded-[12px] p-3 gap-3">
+                    <div className="flex flex-col w-full pt-10 pb-[80px] relative">
+                        <h1 id="natija" className="z-20 text-center pb-[50px] text-3xl font-medium text-[#000000] max-sm:mb-[0px] mb-[100px] krona">-BITIRUVCHILAR-</h1>
+                        <ParticlesBackground />
+                        {
+                            GetArray.length > 0 ? (
+                                GetArray.sort((a, b) => a.id - b.id)
+                                    .map((item, index) => (
+                                        <div
+                                            ref={cardSectionRef}
+                                            key={index}
+                                            className={`flex flex-col sm:flex-row w-[600px] max-sm:mt-10 sm:h-[520px] sm:w-[620px] shadow-lg rounded-xl bg-white p-3 gap-3 z-10 ${index % 2 === 0 ? "self-start" : "self-end"} -mt-[50px] hover:-translate-y-3 transition-all relative`}
+                                            style={{
+                                                border: "2px solid #E5E5E5",
+                                            }}
+                                        >
+                                            <FaPen className="text-[#FBA406] cursor-pointer absolute right-3" onClick={() => handleOpenSidebar(item.name)} />
                                             <img
-                                                className="w-full max-w-[280px] sm:w-[320px]sm:h-[450px] object-cover rounded-[12px]"
+                                                className="w-full max-w-[280px] sm:w-[320px] sm:h-[450px] object-cover rounded-[12px]"
                                                 src={item.image}
                                                 alt="User"
                                             />
-                                            <div className="flex flex-col text-center justify-between w-full max-w-[280px] relative">
-                                                <GoPencil
-                                                    className="absolute -right-1 top-1 text-yellow-600 cursor-pointer"
-                                                    onClick={() => handleOpenSidebar(item.name)}
-                                                    size={17}
-                                                />
-                                                <div className="flex flex-col gap-1 sm:h-[360px] h-auto mt-3 sm:mt-0 px-2">
-                                                    <h2 className="text-2xl font-semibold capitalize">{item.name}</h2>
+                                            <div className="flex flex-col items-center justify-between w-full max-w-[280px] monospace">
+                                                <div className="flex flex-col items-start justify-start gap-7">
+                                                    {/* Ism */}
+                                                    <h1 className="text-3xl font-semibold tracking-wide">
+                                                        {item.name}
+                                                    </h1>
 
-                                                    <span className="flex gap-2 justify-center text-[16px] pt-[10px]">
-                                                        <h3><i>{item.age} yosh</i></h3> /
-                                                        <h3><i>{item.job}</i></h3>
-                                                    </span>
+                                                    {/* Yosh va Kasb */}
+                                                    <div className="flex gap-1 items-center text-xl font-[600] tracking-wide">
+                                                        <span>{item.age} yosh</span>
+                                                        <span>|</span>
+                                                        <span>{item.job}</span>
+                                                    </div>
 
-                                                    <p className="text-center sm:text-left break-words whitespace-pre-line text-[#717070]">
-                                                        {item.discription}
-                                                    </p>
+                                                    {/* Ish joyi */}
+                                                    <div className="grid grid-cols-[auto,1fr] gap-2 items-start">
+                                                        <span className="flex items-center gap-2 text-xl font-[600] whitespace-nowrap">
+                                                            <IoLocation />
+                                                            Ish joyi:
+                                                        </span>
+                                                        <span className="text-xl font-[400] tracking-wide break-words">
+                                                            {item.workplace}
+                                                        </span>
+                                                    </div>
 
-                                                    <div className="mt-4 space-y-2 text-left sm:text-left sm:px-0 px-4">
-                                                        <div className="flex items-center gap-2">
-                                                            <FaLocationDot className="text-[20px] flex self-start" />
-                                                            <h1 className="text-[16px] font-bold">
-                                                                Ish Joyi: <span className="font-normal">{item.workplace}</span>
-                                                            </h1>
-                                                        </div>
-                                                        <div className="flex items-center gap-2">
-                                                            <MdMonetizationOn className="text-[20px] flex self-start" />
-                                                            <h1 className="font-bold">
-                                                                Daromadi: <span className="font-normal">{item.price}</span>
-                                                            </h1>
-                                                        </div>
-                                                        <div className="flex items-center gap-2">
-                                                            <TbTargetArrow className="text-[18px] flex self-start" />
-                                                            <h1 className="font-bold">
-                                                                Ishga kirdi: <span className="font-normal">{item.eddedData}</span>
-                                                            </h1>
-                                                        </div>
-                                                        <div className="flex items-center gap-2">
-                                                            <HiMiniCalendarDateRange className="text-[22px] flex self-start" />
-                                                            <h1 className="text-[16px] font-bold">
-                                                                Ma'lumot olingan sana: <span className="font-normal">{item.Dateofemployment}</span>
-                                                            </h1>
-                                                        </div>
+                                                    {/* Daromad */}
+                                                    <div className="grid grid-cols-[auto,1fr] gap-2 items-start">
+                                                        <span className="flex items-center gap-2 text-xl font-[600] whitespace-nowrap">
+                                                            <BsCreditCardFill />
+                                                            Daromadi:
+                                                        </span>
+                                                        <span className="text-xl font-[400] tracking-wide break-words">
+                                                            {item.price}
+                                                        </span>
+                                                    </div>
+
+                                                    {/* Kirdi */}
+                                                    <div className="grid grid-cols-[auto,1fr] gap-2 items-start">
+                                                        <span className="flex items-center gap-2 text-xl font-[600] whitespace-nowrap">
+                                                            <i className="fa-solid fa-arrows-down-to-people text-base"></i>
+                                                            Kirdi:
+                                                        </span>
+                                                        <span className="text-xl font-[400] tracking-wide break-words">
+                                                            {item.eddedData}
+                                                        </span>
+                                                    </div>
+
+                                                    {/* Ma'lumot sanasi */}
+                                                    <div className="grid grid-cols-[auto,1fr] gap-2 items-start">
+                                                        <span className="flex items-center gap-2 text-xl font-[600] whitespace-nowrap">
+                                                            <FaCalendarAlt />
+                                                            Ma'lumot sanasi:
+                                                        </span>
+                                                        <span className="text-xl font-[400] tracking-wide break-words">
+                                                            {item.Dateofemployment}
+                                                        </span>
                                                     </div>
                                                 </div>
 
-                                                <button className="w-[190px] h-[40px] text-[13px] font-normal leading-[32px] rounded-[24px] bg-[#FFC865] font-['Krona_One'] flex items-center justify-center gap-2 mt-6 mx-auto cursor-pointer">
-                                                    Bog’lanish <FaArrowUp className="w-[20px] h-[20px] bg-white p-[3px] text-[12px] rounded-full" />
-                                                </button>
+                                                {/* Bog‘lanish tugmasi */}
+                                                <a
+                                                    href="tel:+998916994104"
+                                                    className="w-[190px] h-[40px] text-[13px] font-normal leading-[32px] rounded-[24px] bg-[#FFC865] font-['Krona_One'] flex items-center justify-center gap-2 mt-6 mx-auto cursor-pointer krona"
+                                                >
+                                                    Bog’lanish{" "}
+                                                    <PiArrowDownRightBold className="w-5 h-5 bg-white p-[2px] text-[12px] rounded-full" />
+                                                </a>
                                             </div>
                                         </div>
-                                    </div>
-                                ))
-                        ) : (
-                            <h1>Ma'lumot yuklanmoqda!</h1>
-                        )
-                    }
+                                    ))
+                            ) : (
+                                <h1 className="w-full text-center">Ma'lumot yuklanmoqda!</h1>
+                            )
+                        }
+                    </div>
                 </div>
-            </div>
-        </>
+                <footer className="w-full h-[400px] bg-[#1C1525] px-[150px] py-[50px] flex justify-start items-start gap-[40px] montserrat">
+                    <div className="flex flex-col items-start justify-start gap-5 text-[#DFDFDF] w-[300px]">
+                        <h3 className="text-[30px] text-white ">
+                            Biz haqimizda
+                        </h3>
+                        <p className="leading-[28px] text-[17px] font-normal">
+                            "Pro Teach" o'quv markazi <a href="https://it-park.uz/" target="_blank" className="text-[#7EBA27]">IT Park</a> ga qarashli markaz bo'lib, 2021-yildan beri o'z mijozlariga sifatli ta'lim xizmatlari ko'rsatib kelmoqda.
+                        </p>
+                    </div>
+                    <div className="flex flex-col items-start justify-start gap-5 text-[#DFDFDF] w-[300px]">
+                        <h3 className="text-[30px] text-white ">
+                            Xizmatlar
+                        </h3>
+                        <div className="flex flex-col gap-7 justify-start items-start">
+                            <h3 className="flex gap-2 items-center hover:text-[#1057bd] cursor-pointer transition-all">
+                                <FaChevronRight size={15} />
+                                <span className="text-[17px] font-normal">Web dasturlash</span>
+                            </h3>
+                            <h3 className="flex gap-2 items-center hover:text-[#1057bd] cursor-pointer transition-all">
+                                <FaChevronRight size={15} />
+                                <span className="text-[17px] font-normal">Grafik dizayn</span>
+                            </h3>
+                            <h3 className="flex gap-2 items-center hover:text-[#1057bd] cursor-pointer transition-all">
+                                <FaChevronRight size={15} />
+                                <span className="text-[17px] font-normal">Kompyuter savodxonlik</span>
+                            </h3>
+                        </div>
+                    </div>
+                    <div className="flex flex-col items-start justify-start gap-5 text-[#DFDFDF] w-[250px]">
+                        <h3 className="text-[30px] text-white ">
+                            Kontakt
+                        </h3>
+                        <div className="flex flex-col gap-7 justify-start items-start">
+                            <a href="https://maps.google.com/maps?q=40.535083,70.925986&ll=40.535083,70.925986&z=16" target="_blank" className="flex gap-2 items-start hover:text-[#1057bd] cursor-pointer transition-all leading-[28px]">
+                                <MdLocationPin size={25} />
+                                Farg'ona Qo'qon shahar Istiqlol ko'chasi
+                            </a>
+                            <h3 className="flex gap-2 items-center hover:text-[#1057bd] cursor-pointer transition-all">
+                                <FaPhone size={20} />
+                                <span className="text-[17px] font-normal">+998 91 699 41 04</span>
+                            </h3>
+                            <h3 className="flex gap-2 items-center hover:text-[#1057bd] cursor-pointer transition-all">
+                                <HiOutlineMail size={20} />
+                                <span className="text-[17px] font-normal">info@proteach.com</span>
+                            </h3>
+                            <a href="https://www.instagram.com/proteachuz/" target="_blank" className="flex gap-2 items-center hover:text-[#1057bd] cursor-pointer transition-all">
+                                <FaInstagram size={20} />
+                                <span className="text-[17px] font-normal">proteachuz</span>
+                            </a>
+                        </div>
+                    </div>
+                </footer>
+            </>
+        </html>
     );
 };
 
