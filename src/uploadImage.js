@@ -6,14 +6,14 @@ export async function uploadImage(file) {
 
     // Faylni yuklash
     const { error: uploadError } = await supabase.storage
-        .from('project007')
+        .from('User_Images')
         .upload(filePath, file);
 
     if (uploadError) throw uploadError;
 
     // Doim ishlaydigan link olish – 2 yil amal qiladi
     const { data: urlData, error: urlError } = await supabase.storage
-        .from('project007')
+        .from('User_Images')
         .createSignedUrl(filePath, 60 * 60 * 24 * 365 * 10); // 10 yil
 
     if (urlError) throw urlError;
