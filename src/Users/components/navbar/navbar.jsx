@@ -15,7 +15,7 @@ function Navbar({ scrollToRef }) {
     };
 
     return (
-        <navbar className={'navbar w-full max-w-[1480px] m-auto flex items-center justify-between py-[17px] px-[20px] rounded-lg border border-solid border-gray-300'}>
+        <nav className={'navbar w-full max-w-[1480px] m-auto flex items-center justify-between py-[17px] px-[20px] rounded-lg border border-solid border-gray-300'}>
             <div>
                 <MdKeyboardBackspace onClick={() => navigate("/")} className='text-[34px] cursor-pointer' />
             </div>
@@ -38,7 +38,7 @@ function Navbar({ scrollToRef }) {
                     <IoCallOutline />
                 </a>
             </div>
-        </navbar>
+        </nav>
     )
 }
 
