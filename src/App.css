@@ -106,6 +106,14 @@ body{
     margin-bottom: 50px;
 }
 
+/* Constrain user card images to prevent layout break when data loads */
+.user-card-img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
 .uploadVideo{
     width: 640px;
     height: 260px;
@@ -123,8 +131,8 @@ body{
 }
 
 .add-user{
-    padding: 14px 24px;
-    background-color: #FFC865;
+    padding: 12px 26px;
+    background-color: #ffb938;
     border: none;
     outline: none;
     border-radius: 6px;
@@ -279,3 +287,5 @@ body{
 .chenge:hover{
     bottom: 0;
 }
+
+/* for loader */

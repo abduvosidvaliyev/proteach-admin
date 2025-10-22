@@ -102,8 +102,8 @@ const App = () => {
           Ma'lumotlarni ko'rish
         </Link>
       </div>
-      <div className='Admin-panel '>
-        <div className='modal'>
+      <div className='Admin-panel'>
+        <div className='modal w-[700px]'>
           <h1 className='modal-title text-[26px] mb-2'>Ma'lumotlar</h1>
           <form>
             <label className='label'>
@@ -142,7 +142,7 @@ const App = () => {
             </label>
           </form>
         </div>
-        <div className='addImg h-[800px]'>
+        <div className='addImg h-[800px] w-[750px]'>
           <div>
             <h2 className="text-[26px] font-semibold">Rasm</h2>
             {

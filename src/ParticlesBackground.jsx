@@ -25,6 +25,7 @@ function ParticlesBackground() {
         top: 0,
         left: 0,
         zIndex: 1,
+        transition: "0.5s"
       }}
     ></div>
   );
