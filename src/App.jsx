@@ -117,17 +117,17 @@ const App = () => {
       style={{ background: "linear-gradient(125deg, #152034, #1c253c, #152034)", display: "flex", justifyContent: "center", padding: "0 40px" }}
     >
       <div className="w-[850px] flex flex-col items-start gap-7 py-10 text-[#b5c2d2]">
-        <div className="w-full flex justify-between items-center">
-          <h1 className="flex flex-col gap-1 text-white text-[35px] leading-[30px] font-bold">
+        <div className="w-full flex max-sm:flex-col sm:items-center gap-2 justify-between items-start">
+          <h1 className="flex flex-col gap-1 text-white max-sm:text-[25px] text-[35px] leading-[30px] font-bold">
             Pro-Teach
-            <span className="text-[#a2b5cf] text-[16px] font-normal">
+            <span className="text-[#a2b5cf] text-[16px] font-normal max-sm:text-[13px]">
               O'quvchi ma'lumotlarini qo'shish
             </span>
           </h1>
           <Link
             to="/panel"
             style={{ background: "linear-gradient(45deg, #00b9bd, #2981ff)" }}
-            className="flex items-center gap-1 text-[13px] rounded-md px-[15px] py-[8px] text-white"
+            className="flex items-center gap-1 text-[13px] rounded-md max-sm:px-[10px] max-sm:py-[5px] px-[15px] py-[8px] text-white"
           >
             <MdOutlineRemoveRedEye size={16} />
             <span>

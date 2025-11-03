@@ -287,7 +287,7 @@ const App = () => {
                     </a>
                 </div>
 
-                <div className="flex flex-col w-full h-auto pt-10 pb-[80px] relative">
+                <div className="flex flex-col w-full h-auto pt-10 pb-[80px] relative items-center">
                     <h1 id="natija" className="z-10 text-center pb-[50px] text-3xl font-medium text-[#000000] max-sm:mb-[0px] mb-[100px] krona">-BITIRUVCHILAR-</h1>
                     <ParticlesBackground />
                     {
@@ -296,7 +296,7 @@ const App = () => {
                                 .map((item, index) => (
                                     <div
                                         key={index}
-                                        className={`flex flex-col sm:flex-row w-[600px] max-sm:mt-10 sm:h-[520px] sm:w-[620px] shadow-lg rounded-xl bg-white p-3 gap-3 z-10 ${index % 2 === 0 ? "self-start" : "self-end"} -mt-[50px] hover:-translate-y-3 transition-all relative`}
+                                        className={`flex flex-col sm:flex-row w-[600px] shadow-lg rounded-xl bg-white p-3 gap-3 z-10 ${index % 2 === 0 ? "xl:self-start" : "xl:self-end"} lg:-mt-[50px] max-lg:mt-10 hover:-translate-y-3 transition-all relative`}
                                         style={{
                                             border: "2px solid #E5E5E5",
                                         }}
