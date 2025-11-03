@@ -118,7 +118,7 @@ const App = () => {
     >
       <div className="w-[850px] flex flex-col items-start gap-7 py-10 text-[#b5c2d2]">
         <div className="w-full flex max-sm:flex-col sm:items-center gap-2 justify-between items-start">
-          <h1 className="flex flex-col gap-1 text-white max-sm:text-[25px] text-[35px] leading-[30px] font-bold">
+          <h1 className="flex flex-col gap-1 text-white max-sm:text-[30px] text-[35px] leading-[30px] font-bold">
             Pro-Teach
             <span className="text-[#a2b5cf] text-[16px] font-normal max-sm:text-[13px]">
               O'quvchi ma'lumotlarini qo'shish
