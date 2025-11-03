@@ -191,7 +191,7 @@ const App = () => {
             <label className="flex flex-col gap-1 justify-center">
               <span className="text-sm">Ma'lumot olingan sana</span>
               <input
-                className="bg-[#263449] rounded-lg text-white px-[10px] py-[6px] border-solid border-2 border-[#324056] text-[14px] outline-none focus:ring-2 ring-[#324056]"
+                className="bg-[#263449] rounded-lg sm:w-full text-white px-[10px] py-[6px] border-solid border-2 border-[#324056] text-[14px] outline-none focus:ring-2 ring-[#324056]"
                 value={NewUser.Dateofemployment}
                 type="date"
                 name="work"
@@ -215,7 +215,7 @@ const App = () => {
             <label className="flex flex-col gap-1 justify-center md:col-span-1 lg:col-span-2 xl:col-span-2">
               <span className="text-sm">Ishga joylashgan sana</span>
               <input
-                className="bg-[#263449] rounded-lg text-white px-[10px] py-[6px] border-solid border-2 border-[#324056] text-[14px] outline-none focus:ring-2 ring-[#324056]"
+                className="bg-[#263449] rounded-lg sm:w-full text-white px-[10px] py-[6px] border-solid border-2 border-[#324056] text-[14px] outline-none focus:ring-2 ring-[#324056]"
                 value={NewUser.eddedData}
                 type="date"
                 name="addedData"
